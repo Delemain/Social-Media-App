@@ -7,7 +7,7 @@
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/khushbuoswal/SIS.git
+   [git clone https://github.com/khushbuoswal/SIS.git](https://github.com/deep-sohana/social-media-app)
 
    ```
 
