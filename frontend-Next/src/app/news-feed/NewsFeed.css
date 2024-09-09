@@ -1,0 +1,135 @@
+.news-feed {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.post-card {
+    display: flex;
+    margin: 20px;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    border-radius: 2px;
+    border: #c9d1d9 solid 2px;
+    background: #ffffff;
+}
+.post-text {
+    display: block;
+    height: 100px;
+    width: 480px;
+    resize: none;
+    background: #dbeaff;
+    border: #c9d1d9 solid 2px;
+}
+
+.post-button-area{
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+.post-button {
+    align-self: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100px;
+    height: 25px;
+    background: #61a7ff;
+    border: #3a82d2 solid 2px;
+    border-radius: 20px;
+}
+.post-button:hover{
+    background: #aad1ff;
+}
+
+.story-panel {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+
+}
+
+.story-card {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    width: 500px;
+    border-radius: 10px;
+    border: #c9d1d9 solid 2px;
+    background: #ffffff;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+.story-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    text-align: start;
+    border-radius: 10px 10px 0 0;
+    width: 500px;
+    background: #ffffff;
+}
+.comment-header {
+    font-size: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    border-radius: 10px 10px 10px 10px;
+    width: 500px;
+    background: aliceblue;
+}
+
+.story-body {
+    text-align: start;
+    align-items: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 500px
+}
+.story-image {
+    width: 460px;
+    height: auto;
+    object-fit: cover;
+    margin-top: 20px;
+}
+.comment-card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    border: #c9d1d9 solid 2px;
+    width: 480px;
+    border-top: 0;
+    border-radius: 0 0 10px 10px;
+    background: aliceblue;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1
+}
+
+.profile-pic-story {
+    font-size: 10px;
+    margin: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #edf6ff;
+}
+.profile-pic-comment{
+    margin: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #dbeaff;
+}
