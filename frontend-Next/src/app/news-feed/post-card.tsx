@@ -18,7 +18,7 @@ function PostCard() {
         };
 
         try {
-            const response = await fetch("http://localhost:3001/api/stories/story", {
+            const response = await fetch("http://localhost:8080/api/post", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

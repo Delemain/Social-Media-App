@@ -9,7 +9,7 @@ function NewsFeed() {
     const [storyIds, setStoryIds] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/stories/all")
+        fetch("http://localhost:8080/api/story/all")
             .then(response => {
                 if (response.ok) {
                     return response.json();

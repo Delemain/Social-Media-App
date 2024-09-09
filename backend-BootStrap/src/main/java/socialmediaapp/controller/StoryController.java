@@ -7,16 +7,17 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/stories")
+@RequestMapping("/api/story")
 public class StoryController {
 
     @Autowired
     private StoryRepository storyRepository;
 
-    @GetMapping("/story/{storyID}")
+    @GetMapping("/{storyID}")
     public ResponseEntity<StoryModel> getStory(@PathVariable Long storyID) {
         Optional<StoryModel> story = storyRepository.findById(storyID);
 
@@ -27,7 +28,7 @@ public class StoryController {
         }
     }
 
-    @PostMapping("/story")
+    @PostMapping("/post")
     public ResponseEntity<String> addStory(@RequestParam Long userID, @RequestParam String content,
                                            @RequestParam String date, @RequestParam Boolean hasImage) {
         StoryModel story = new StoryModel();
@@ -38,5 +39,16 @@ public class StoryController {
 
         storyRepository.save(story);
         return new ResponseEntity<>("Story added successfully", HttpStatus.CREATED);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<StoryModel>> getAllStories() {
+        List<StoryModel> stories = storyRepository.findAllByOrderByDateDesc();
+
+        if (stories.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(stories, HttpStatus.OK);
     }
 }

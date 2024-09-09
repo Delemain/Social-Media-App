@@ -22,13 +22,14 @@ function StoryCard({ story }) {
                         fontSize: '14px', // Make the text smaller
                     }}
                 >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                         className="profile-pic-story"
-                        src={story.profile_picture_url}
+                        src={story.user.profilePictureUrl}
                         alt={"image no load"}
                     />
                     <CardContent style={{ justifyContent: 'flex-start' }}>
-                        {story.username}
+                        {story.user.username}
                         <br />
                         <span style={{ color: "#a9a9a9" }}>{new Date(story.date).toLocaleString()}</span>
                     </CardContent>
@@ -36,8 +37,9 @@ function StoryCard({ story }) {
                 <CardContent>
                     {story.content}
                     <br />
-                    {story.hasimage && story.image_url && (
-                        <img className="story-image" src={story.image_url} alt="Story" width={200} height={200} />
+                    {story.hasImage && story.imageUrl && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img className="story-image" src={story.imageUrl} alt="Story" width={200} height={200} />
                     )}
                 </CardContent>
             </Card>

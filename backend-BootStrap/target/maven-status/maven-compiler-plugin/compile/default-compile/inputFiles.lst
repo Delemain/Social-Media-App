@@ -1,5 +1,6 @@
-/Users/griffinframe-szafjanski/Desktop/WebstormProjects/SocialMediaApp/backend-BootStrap/src/main/java/socialmediaapp/Controllers/ExampleController.java
-/Users/griffinframe-szafjanski/Desktop/WebstormProjects/SocialMediaApp/backend-BootStrap/src/main/java/socialmediaapp/Controllers/StoryController.java
-/Users/griffinframe-szafjanski/Desktop/WebstormProjects/SocialMediaApp/backend-BootStrap/src/main/java/socialmediaapp/Models/StoryModel.java
-/Users/griffinframe-szafjanski/Desktop/WebstormProjects/SocialMediaApp/backend-BootStrap/src/main/java/socialmediaapp/Repositories/StoryRepository.java
-/Users/griffinframe-szafjanski/Desktop/WebstormProjects/SocialMediaApp/backend-BootStrap/src/main/java/socialmediaapp/SocialMediaAppApplication.java
+/Users/griffinframe-szafjanski/Desktop/WebstormProjects/social-media-app/backend-BootStrap/src/main/java/socialmediaapp/SocialMediaAppApplication.java
+/Users/griffinframe-szafjanski/Desktop/WebstormProjects/social-media-app/backend-BootStrap/src/main/java/socialmediaapp/controller/ExampleController.java
+/Users/griffinframe-szafjanski/Desktop/WebstormProjects/social-media-app/backend-BootStrap/src/main/java/socialmediaapp/controller/StoryController.java
+/Users/griffinframe-szafjanski/Desktop/WebstormProjects/social-media-app/backend-BootStrap/src/main/java/socialmediaapp/model/StoryModel.java
+/Users/griffinframe-szafjanski/Desktop/WebstormProjects/social-media-app/backend-BootStrap/src/main/java/socialmediaapp/model/UserModel.java
+/Users/griffinframe-szafjanski/Desktop/WebstormProjects/social-media-app/backend-BootStrap/src/main/java/socialmediaapp/repository/StoryRepository.java
