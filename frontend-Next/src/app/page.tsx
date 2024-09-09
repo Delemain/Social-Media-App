@@ -14,14 +14,12 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Globe } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
-import NavigationBar from "@/components/navigation/navigationbar";
 // import { Separator } from "@/components/ui/separator";
 
 export default function Home() {
   return (
     <main className="flex flex-col justify-center items-center size-full">
 
-      <NavigationBar/>
       <div className="absolute top-4 right-4">
        <ModeToggle />
       </div>
