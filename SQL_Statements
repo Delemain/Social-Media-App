@@ -1,0 +1,45 @@
+create database "SocialMediaAppDB"
+    with owner postgres;
+
+create sequence public.story_t_storyid_seq
+    as integer;
+
+alter sequence public.story_t_storyid_seq owner to postgres;
+
+create table public.user_t
+(
+    userid              serial
+        primary key,
+    username            varchar(50)             not null
+        unique,
+    email               varchar(100)            not null
+        unique,
+    password            varchar(255)            not null,
+    profile_picture_url varchar(255),
+    created_at          timestamp default now() not null
+);
+
+alter table public.user_t
+    owner to postgres;
+
+create table public.story_t
+(
+    userid     bigint                                                        not null
+        references public.user_t,
+    storyid    bigint       default nextval('story_t_storyid_seq'::regclass) not null,
+    content    varchar(255)                                                  not null,
+    date       varchar(255) default now()                                    not null,
+    hasimage   boolean      default false                                    not null,
+    image_url  varchar(255),
+    visibility varchar(20)  default 'public'::character varying              not null
+        constraint story_t_visibility_check
+            check ((visibility)::text = ANY
+                   ((ARRAY ['public'::character varying, 'friends'::character varying])::text[])),
+    primary key (userid, storyid)
+);
+
+alter table public.story_t
+    owner to postgres;
+
+alter sequence public.story_t_storyid_seq owned by public.story_t.storyid;
+
