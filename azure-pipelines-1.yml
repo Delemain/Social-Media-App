@@ -22,10 +22,5 @@ jobs:
         cd frontend-Next
         npm install
         npm run dev
-      displayName: 'Install dependencies and build frontend-Next'
+      displayName: 'Install dependencies and run Next.js app in dev mode'
 
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: 'frontend-Next/.next'
-        artifact: 'next_build'
-      displayName: 'Publish Next.js build artifacts'
