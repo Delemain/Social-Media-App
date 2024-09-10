@@ -41,6 +41,10 @@ export default function Register() {
               </div>
             </div>
             <div className="grid-gap-2">
+              <Label>Username</Label>
+              <Input id="username" placeholder="bladerunner-01"  required />
+            </div>
+            <div className="grid-gap-2">
               <Label>Email</Label>
               <Input
                 id="email"
