@@ -54,13 +54,12 @@ export default function Account() {
               </div>
             </div>
             <div className="grid-gap-2">
+              <Label>Username</Label>
+              <Input id="username" placeholder="bladerunner-01"  required />
+            </div>
+            <div className="grid-gap-2">
               <Label>Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="m@example.com"
-                required
-              />
+              <Input id="email" type="email" placeholder="m@example.com" required />
             </div>
             <div className="grid-gap-2">
               <Label>Password</Label>
@@ -75,10 +74,18 @@ export default function Account() {
               <Button variant="secondary" type="button" className="flex-1">
                 Cancel
               </Button>
-              <Button variant="secondary" type="button" className="flex-1" onClick={handleViewLogs}>
+              <Button
+                variant="secondary"
+                type="button"
+                className="flex-1"
+                onClick={handleViewLogs}
+              >
                 View logs
               </Button>
             </div>
+            <Button type="submit" variant="destructive">
+              Delete account
+            </Button>
           </form>
         </CardContent>
       </Card>
