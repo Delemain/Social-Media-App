@@ -6,17 +6,14 @@ create sequence public.story_t_storyid_seq
 
 alter sequence public.story_t_storyid_seq owner to postgres;
 
-create table public.user_t
-(
-    userid              serial
-        primary key,
-    username            varchar(50)             not null
-        unique,
-    email               varchar(100)            not null
-        unique,
-    password            varchar(255)            not null,
-    profile_picture_url varchar(255),
-    created_at          timestamp default now() not null
+CREATE TABLE user_t (
+    userid BIGINT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    profile_picture_url VARCHAR(255)
 );
 
 alter table public.user_t
