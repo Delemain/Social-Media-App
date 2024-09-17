@@ -29,6 +29,9 @@ public class UserModel {
     @Column(name = "profile_picture_url", length = 255)
     private String profilePictureUrl;
 
+    @Column(name = "bio", length = 500)
+    private String bio;
+
     // Default constructor
     public UserModel() {}
 
@@ -87,5 +90,13 @@ public class UserModel {
 
     public void setProfilePictureUrl(String profilePictureUrl) {
         this.profilePictureUrl = profilePictureUrl;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 }
