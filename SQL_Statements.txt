@@ -16,6 +16,17 @@ CREATE TABLE user_t (
     profile_picture_url VARCHAR(255)
 );
 
+CREATE TABLE access_logs (
+    logid SERIAL PRIMARY KEY,
+    userid BIGINT NOT NULL,
+    log_type VARCHAR(20) NOT NULL CHECK (log_type IN ('login', 'logout', 'update')),
+    log_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_user
+      FOREIGN KEY(userid) 
+      REFERENCES user_t(userid)
+      ON DELETE CASCADE
+);
+
 alter table public.user_t
     owner to postgres;
 
