@@ -25,35 +25,37 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const res = await fetch('http://localhost:8080/api/login', {
+    const res = await fetch("http://localhost:8080/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
 
-        // Check if the response is JSON or plain text
-        const contentType = res.headers.get("Content-Type");
-        let responseText;
-    
-        if (contentType && contentType.includes("application/json")) {
-          const data = await res.json();
-          responseText = data.message;
-        } else {
-          responseText = await res.text();
-        }
+    // // Check if the response is JSON or plain text
+    // const contentType = res.headers.get("Content-Type");
+    // let responseData;
+
+    // if (contentType && contentType.includes("application/json")) {
+    //   responseData = await res.json();
+    // } else {
+    //   const responseText = await res.text();
+    //   setError(responseText || "Login failed. Please try again.");
+    //   return;
+    // }
+
+    const data = await res.json();
 
     if (res.ok) {
-      // Redirect to logs page on successful login
-      router.push("/logs");
+      // Store user ID or token in localStorage or sessionStorage
+      localStorage.setItem("userid", data.userid);
+      router.push("/account"); // Redirect to account page
     } else {
-      const errorText = await res.text();
-      setError(errorText || "Login failed. Please try again.");
+      setError(data.message);
     }
   };
 
   return (
     <main className="flex flex-col justify-center items-center size-full">
-
       <div className="absolute top-4 right-4">
         <ModeToggle />
       </div>
@@ -81,7 +83,10 @@ export default function Home() {
             <div className="grid gap-3">
               <div className="flex items-center">
                 <Label>Password</Label>
-                <Link href="/forgot-password" className="ml-auto inline-block text-sm underline">
+                <Link
+                  href="/forgot-password"
+                  className="ml-auto inline-block text-sm underline"
+                >
                   Forgot your password?
                 </Link>
               </div>
@@ -98,9 +103,7 @@ export default function Home() {
 
             <div className="relative flex items-center">
               <div className="flex-grow border-t border-gray-300"></div>
-              <span className="mx-5 flex-shrink text-sm text-gray-500">
-                OR
-              </span>
+              <span className="mx-5 flex-shrink text-sm text-gray-500">OR</span>
               <div className="flex-grow border-t border-gray-300"></div>
             </div>
             <Button variant="outline">
