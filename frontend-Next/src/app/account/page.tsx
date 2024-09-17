@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 // import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -19,6 +20,98 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Account() {
   const router = useRouter(); // Initialise the router
+
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    password: "",
+    email: "",
+    bio: "",
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const userId = localStorage.getItem("userid"); // Retrieve userid from localStorage
+      if (!userId) {
+        console.error("User is not logged in");
+        setError("User is not logged in");
+        return;
+      }
+
+      try {
+        const res = await fetch(`http://localhost:8080/api/user/${userId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        // Check if the response is JSON or plain text
+        // const contentType = res.headers.get("Content-Type");
+        // let responseData;
+
+        // if (contentType && contentType.includes("application/json")) {
+        //   const data = await res.json();
+        //   responseData = data;
+        // } else {
+        //   responseData = await res.text();
+        //   setError(responseData); // Handle plain text error message
+        // }
+
+        const data = await res.json();
+
+        if (res.ok) {
+          setUserData({
+            firstName: data.firstName || "",
+            lastName: data.lastName || "",
+            username: data.username || "",
+            password: data.password || "",
+            email: data.email || "",
+            bio: data.bio || "",
+          });
+        } else {
+          console.error("Failed to fetch user data");
+          setError(data);
+        }
+      } catch (err) {
+        console.error("Error fetching user data", err);
+        setError("An error occurred while fetching user data");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  const handleDeleteAccount = async () => {
+    const userId = localStorage.getItem("userid");
+    if (!userId) {
+      setError("User is not logged in");
+      return;
+    }
+
+    try {
+      const res = await fetch(`http://localhost:8080/api/user/${userId}`, {
+        method: "DELETE",
+      });
+
+      if (res.ok) {
+        // Clear localStorage and redirect to home or login page
+        localStorage.removeItem("userid");
+        router.push("/");
+      } else {
+        const errorText = await res.text();
+        setError(errorText || "Failed to delete account.");
+      }
+    } catch (err) {
+      console.error("Error deleting account", err);
+      setError("An error occurred while deleting the account.");
+    }
+  };
 
   const handleViewLogs = () => {
     router.push("/logs"); // Redirect to /logs
@@ -46,28 +139,67 @@ export default function Account() {
             <div className="grid grid-cols-2 gap-4">
               <div className="grid-gap-2">
                 <Label>First name</Label>
-                <Input id="first-name" placeholder="John" required />
+                <Input
+                  id="first-name"
+                  value={userData.firstName}
+                  onChange={(e) =>
+                    setUserData({ ...userData, firstName: e.target.value })
+                  }
+                  required
+                />
               </div>
               <div className="grid-gap-2">
                 <Label>Last name</Label>
-                <Input id="last-name" placeholder="Smith" required />
+                <Input
+                  id="last-name"
+                  value={userData.lastName}
+                  onChange={(e) =>
+                    setUserData({ ...userData, lastName: e.target.value })
+                  }
+                  required
+                />
               </div>
             </div>
             <div className="grid-gap-2">
               <Label>Username</Label>
-              <Input id="username" placeholder="bladerunner-01"  required />
+              <Input
+                id="username"
+                value={userData.username}
+                onChange={(e) =>
+                  setUserData({ ...userData, username: e.target.value })
+                }
+                required
+              />
             </div>
             <div className="grid-gap-2">
               <Label>Email</Label>
-              <Input id="email" type="email" placeholder="m@example.com" required />
+              <Input
+                id="email"
+                type="email"
+                value={userData.email}
+                onChange={(e) =>
+                  setUserData({ ...userData, email: e.target.value })
+                }
+                required
+              />
             </div>
             <div className="grid-gap-2">
               <Label>Password</Label>
-              <Input id="password" type="password" required />
+              <Input id="password" type="password" value={userData.password}
+                onChange={(e) =>
+                  setUserData({ ...userData, password: e.target.value })
+                }
+                required />
             </div>
             <div className="grid-gap-2">
               <Label>My Bio</Label>
-              <Textarea placeholder="Type your message here." required />
+              <Textarea
+                value={userData.bio}
+                onChange={(e) =>
+                  setUserData({ ...userData, bio: e.target.value })
+                }
+                required
+              />
             </div>
             <Button type="submit">Update details</Button>
             <div className="flex gap-4">
@@ -83,7 +215,7 @@ export default function Account() {
                 View logs
               </Button>
             </div>
-            <Button type="submit" variant="destructive">
+            <Button type="submit" variant="destructive" onClick={handleDeleteAccount}>
               Delete account
             </Button>
           </form>
