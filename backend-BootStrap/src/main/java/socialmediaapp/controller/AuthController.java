@@ -65,9 +65,13 @@ public class AuthController {
         if (userRepository.findByEmail(user.getEmail()) != null) {
             return ResponseEntity.status(400).body("Email already in use");
         }
-
+        
         // Save the new user to the database
         userRepository.save(user);
+
+        // AccessLog registerLog = new AccessLog(user.getUserid(), "Account Created", LocalDateTime.now());
+        // accessLogRepository.save(registerLog);
+
         return ResponseEntity.ok("Registration successful!");
     }
 
@@ -101,5 +105,36 @@ public class AuthController {
             return ResponseEntity.ok(logs);
         }
     }
+
+    @PutMapping("/user/{userid}")
+    public ResponseEntity<?> updateUser(@PathVariable Long userid, @RequestBody UserModel updatedUser) {
+        Optional<UserModel> existingUserOptional = userRepository.findById(userid);
+        if (existingUserOptional.isPresent()) {
+            UserModel existingUser = existingUserOptional.get();
+
+            // Update fields
+            existingUser.setFirstName(updatedUser.getFirstName());
+            existingUser.setLastName(updatedUser.getLastName());
+            existingUser.setUsername(updatedUser.getUsername());
+            existingUser.setEmail(updatedUser.getEmail());
+            existingUser.setBio(updatedUser.getBio());
+            
+            
+            if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
+                existingUser.setPassword(updatedUser.getPassword()); 
+            }
+
+            // Save updated user to the repository
+            userRepository.save(existingUser);
+
+            AccessLog updateLog = new AccessLog(existingUser.getUserid(), "update", LocalDateTime.now());
+            accessLogRepository.save(updateLog);
+
+            return ResponseEntity.ok("User details updated successfully.");
+        } else {
+            return ResponseEntity.status(404).body("User not found.");
+        }
+    }
+
 
 }
