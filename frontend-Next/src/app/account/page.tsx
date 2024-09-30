@@ -113,9 +113,44 @@ export default function Account() {
     }
   };
 
+  const handleUpdateDetails = async (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent the form from refreshing the page
+  
+    const userId = localStorage.getItem("userid");
+    if (!userId) {
+      setError("User is not logged in");
+      return;
+    }
+  
+    try {
+      const res = await fetch(`http://localhost:8080/api/user/${userId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData), // Send the updated user data to the backend
+      });
+  
+      if (res.ok) {
+        const responseText = await res.text();
+        alert(responseText); // Optionally show success message
+      } else {
+        const errorText = await res.text();
+        setError(errorText);
+      }
+    } catch (err) {
+      console.error("Error updating user details", err);
+      setError("An error occurred while updating user details.");
+    }
+  };
+
   const handleViewLogs = () => {
     router.push("/logs"); // Redirect to /logs
   };
+
+  const handleCancel = () => {
+    router.back();
+  }
 
   return (
     <main className="flex flex-col justify-center items-center size-full">
@@ -201,11 +236,9 @@ export default function Account() {
                 required
               />
             </div>
-            <Button type="submit">Update details</Button>
+            <Button type="submit" onClick={handleUpdateDetails}> Update details</Button>
             <div className="flex gap-4">
-              <Button variant="secondary" type="button" className="flex-1">
-                Cancel
-              </Button>
+              <Button variant="secondary" type="button" onClick={handleCancel} className="flex-1"> Cancel </Button>
               <Button
                 variant="secondary"
                 type="button"
