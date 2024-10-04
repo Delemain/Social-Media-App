@@ -34,7 +34,6 @@ import {
 } from "@/components/ui/table";
 import { ModeToggle } from "@/components/mode-toggle";
 import { useRouter } from "next/navigation";
-import { format } from "date-fns";
 
 interface Log {
   logid: string;
@@ -125,6 +124,7 @@ export default function Logs() {
               </CardDescription>
             </CardHeader>
             <CardContent>
+              {error && <p className="text-red-500 mb-4">{error}</p>}
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -135,7 +135,9 @@ export default function Logs() {
                 </TableHeader>
                 <TableBody>
                   {logs.map((log) => {
-                    const parsedDate = new Date(log.logTime).toLocaleDateString();
+                    const parsedDate = new Date(
+                      log.logTime
+                    ).toLocaleDateString();
 
                     return (
                       <TableRow key={log.logid}>

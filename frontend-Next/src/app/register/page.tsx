@@ -40,15 +40,15 @@ export default function Register() {
       }),
     });
 
-    const contentType = res.headers.get("Content-Type");
-    let responseText;
+    // const contentType = res.headers.get("Content-Type");
+    // let responseText;
 
-    if (contentType && contentType.includes("application/json")) {
-      const data = await res.json();
-      responseText = data.message;
-    } else {
-      responseText = await res.text();
-    }
+    // if (contentType && contentType.includes("application/json")) {
+    //   const data = await res.json();
+    //   responseText = data.message;
+    // } else {
+    //   responseText = await res.text();
+    // }
 
     if (res.ok) {
       // Redirect to login or show success
