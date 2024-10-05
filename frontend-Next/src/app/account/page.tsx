@@ -18,6 +18,18 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Loading } from "@/components/ui/loading";
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog";
+import { AlertCircle } from "lucide-react"
 
 export default function Account() {
   const router = useRouter(); // Initialise the router
@@ -32,6 +44,9 @@ export default function Account() {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [showAlert, setShowAlert] = useState(false); // Add state to control alert visibility
+  const [alertMessage, setAlertMessage] = useState(""); // State to hold alert message
+  const [alertTitle, setAlertTitle] = useState(""); // State to hold alert message
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -137,7 +152,10 @@ export default function Account() {
 
       if (res.ok) {
         const responseText = await res.text();
-        alert(responseText); // Optionally show success message
+        // alert(responseText); // Optionally show success message
+        setAlertMessage(responseText); // Set success message
+        setAlertTitle("Update Successful")
+        setShowAlert(true);
       } else {
         const errorText = await res.text();
         setError(errorText);
@@ -284,6 +302,22 @@ export default function Account() {
           </CardContent>
         </Card>
       )}
+
+      {/* Alert Dialog */}
+      <AlertDialog open={showAlert} onOpenChange={setShowAlert}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertCircle className="h-6 w-6" />
+            <AlertDialogTitle>{alertTitle}</AlertDialogTitle>
+            <AlertDialogDescription>{alertMessage}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={() => setShowAlert(false)}>
+              Ok
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </main>
   );
 }
