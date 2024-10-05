@@ -20,13 +20,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Loading } from "@/components/ui/loading";
 import {
   AlertDialog,
-  AlertDialogTrigger,
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogDescription,
   AlertDialogFooter,
-  AlertDialogCancel,
   AlertDialogAction,
 } from "@/components/ui/alert-dialog";
 import { AlertCircle } from "lucide-react"
