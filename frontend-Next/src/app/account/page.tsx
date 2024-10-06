@@ -52,6 +52,10 @@ export default function Account() {
       if (!userId) {
         console.error("User is not logged in");
         setError("User is not logged in");
+        setAlertMessage(error);
+        setAlertTitle("Something went wrong!")
+        setShowAlert(true);
+        
         return;
       }
 
@@ -89,10 +93,16 @@ export default function Account() {
         } else {
           console.error("Failed to fetch user data");
           setError(data);
+          setAlertMessage("Failed to fetch user data");
+          setAlertTitle("Something went wrong!")
+          setShowAlert(true);
         }
       } catch (err) {
         console.error("Error fetching user data", err);
         setError("An error occurred while fetching user data");
+        setAlertMessage(error);
+        setAlertTitle("Something went wrong!")
+        setShowAlert(true);
       } finally {
         // Simulate a delay for loading
         setTimeout(() => {
@@ -108,6 +118,9 @@ export default function Account() {
     const userId = localStorage.getItem("userid");
     if (!userId) {
       setError("User is not logged in");
+      setAlertMessage(error);
+      setAlertTitle("Something went wrong!")
+      setShowAlert(true);
       return;
     }
 
@@ -123,10 +136,16 @@ export default function Account() {
       } else {
         const errorText = await res.text();
         setError(errorText || "Failed to delete account.");
+        setAlertMessage(errorText);
+        setAlertTitle("Delete Account Failed")
+        setShowAlert(true);
       }
     } catch (err) {
       console.error("Error deleting account", err);
       setError("An error occurred while deleting the account.");
+      setAlertMessage("Failed to delete account.");
+      setAlertTitle("Delete Account Failed")
+      setShowAlert(true);
     }
   };
 
@@ -136,6 +155,9 @@ export default function Account() {
     const userId = localStorage.getItem("userid");
     if (!userId) {
       setError("User is not logged in");
+      setAlertMessage(error);
+      setAlertTitle("Something went wrong!")
+      setShowAlert(true);
       return;
     }
 
@@ -157,10 +179,16 @@ export default function Account() {
       } else {
         const errorText = await res.text();
         setError(errorText);
+        setAlertMessage(errorText);
+        setAlertTitle("Update Failed")
+        setShowAlert(true);
       }
     } catch (err) {
       console.error("Error updating user details", err);
       setError("An error occurred while updating user details.");
+      setAlertMessage(error);
+      setAlertTitle("Something went wrong!")
+      setShowAlert(true);
     }
   };
 
@@ -195,7 +223,7 @@ export default function Account() {
             <CardDescription>Update your account details</CardDescription>
           </CardHeader>
           <CardContent>
-            {error && <p className="text-red-500">{error}</p>}
+            {/* {error && <p className="text-red-500">{error}</p>} */}
             <form className="grid gap-6">
               <div className="grid grid-cols-2 gap-4">
                 <div className="grid-gap-2">
