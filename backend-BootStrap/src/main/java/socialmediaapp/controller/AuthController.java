@@ -112,17 +112,33 @@ public class AuthController {
         if (existingUserOptional.isPresent()) {
             UserModel existingUser = existingUserOptional.get();
 
+            if (updatedUser.getFirstName() == null || updatedUser.getFirstName().isEmpty()){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("First name cannot be empty");
+            }
+            if (updatedUser.getLastName() == null || updatedUser.getLastName().isEmpty()){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Last name cannot be empty");
+            }
+            if (updatedUser.getUsername() == null || updatedUser.getUsername().isEmpty()){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username cannot be empty");
+            }
+            if (updatedUser.getEmail() == null || updatedUser.getEmail().isEmpty()){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email cannot be empty");
+            }
+            if (updatedUser.getPassword() == null || updatedUser.getPassword().isEmpty()){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password cannot be empty");
+            }
+
             // Update fields
             existingUser.setFirstName(updatedUser.getFirstName());
             existingUser.setLastName(updatedUser.getLastName());
             existingUser.setUsername(updatedUser.getUsername());
             existingUser.setEmail(updatedUser.getEmail());
+            existingUser.setPassword(updatedUser.getPassword());
             existingUser.setBio(updatedUser.getBio());
             
-            
-            if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
-                existingUser.setPassword(updatedUser.getPassword()); 
-            }
+            // if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
+            //     existingUser.setPassword(updatedUser.getPassword()); 
+            // }
 
             // Save updated user to the repository
             userRepository.save(existingUser);
