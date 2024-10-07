@@ -6,15 +6,21 @@ create sequence public.story_t_storyid_seq
 
 alter sequence public.story_t_storyid_seq owner to postgres;
 
+-- Create the sequence
+CREATE SEQUENCE user_t_userid_seq;
+
+-- Create the user_t table with the userid column using the sequence as default
 CREATE TABLE user_t (
-    userid BIGINT PRIMARY KEY,
-    first_name VARCHAR(50),
-    last_name VARCHAR(50),
+    userid BIGINT PRIMARY KEY DEFAULT nextval('user_t_userid_seq'),
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    profile_picture_url VARCHAR(255)
+    profile_picture_url VARCHAR(255),
+    bio VARCHAR(255)
 );
+
 
 CREATE TABLE access_logs (
     logid SERIAL PRIMARY KEY,
