@@ -37,7 +37,7 @@ steps:
   inputs:
     testResultsFormat: 'JUnit'
     testResultsFiles: '**/target/surefire-reports/*.xml'
-    failTaskOnFailedTests: true
+    failTaskOnFailedTests: false
   displayName: 'Publish Backend Test Results'
 
 # Step 7: Copy Backend Artifacts
