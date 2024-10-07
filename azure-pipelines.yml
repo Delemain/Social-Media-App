@@ -5,13 +5,6 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-# Step 1: Install Java 17 from AdoptOpenJDK
-- task: JavaToolInstaller@0
-  inputs:
-    versionSpec: '17'                 # Specify the JDK version
-    jdkArchitectureOption: 'x64'      # Choose the architecture (x64)
-    jdkSourceOption: 'AdoptOpenJDK'   # Use AdoptOpenJDK as the source
-  displayName: 'Install Java 17'
 
 # Step 2: Install Node.js for frontend
 - task: NodeTool@0
