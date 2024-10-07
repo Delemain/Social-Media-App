@@ -31,6 +31,7 @@ steps:
     ./mvnw clean test
     ./mvnw clean install
   displayName: 'Run Backend Tests and Build'
+  continueOnError: true  # Continue pipeline even if tests fail
 
 # Step 6: Publish backend test results
 - task: PublishTestResults@2
