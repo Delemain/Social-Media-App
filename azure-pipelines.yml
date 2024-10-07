@@ -19,9 +19,10 @@ steps:
   displayName: 'Build Frontend'
 
 # Step 3: Install Java for the backend
-- task: UseJavaVersion@0
+- task: JavaToolInstaller@0
   inputs:
     versionSpec: '17.x' # Use the Java version compatible with your backend
+    jdkArchitectureOption: 'x64'
   displayName: 'Install Java 17'
 
 # Step 4: Run backend tests and build
