@@ -15,14 +15,15 @@ steps:
 - script: |
     cd frontend-Next
     npm install
-    npm run build --no-lint
+    npm run build
   displayName: 'Build Frontend'
 
 # Step 3: Install Java for the backend
 - task: JavaToolInstaller@0
   inputs:
-    versionSpec: '17.x' # Use the Java version compatible with your backend
+    versionSpec: '17.x'
     jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled' # Specify the JDK source
   displayName: 'Install Java 17'
 
 # Step 4: Run backend tests and build
