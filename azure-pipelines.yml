@@ -16,6 +16,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    cd frontend-Next
     npm install
-    npm run dev
+    npm run build
   displayName: 'npm install and run'
