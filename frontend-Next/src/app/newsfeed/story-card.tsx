@@ -3,12 +3,13 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import "./NewsFeed.css";
 import CommentCard from "@/app/newsfeed/comment-card";
 import { Button } from "@/components/ui/button";
+import Image from 'next/image';
 
 function StoryCard({ userID, storyID }) {
     const userId = localStorage.getItem("userid");
     const [story, setStory] = useState(null);
     const [commentIds, setCommentIds] = useState([]);
-    const [commentsExpanded, setCommentsExpanded] = useState(false);
+    const [commentsExpanded /*, setCommentsExpanded*/] = useState(false);
     const [commentTabExpanded, setCommentTabExpanded] = useState(false);
     const [content, setContent] = useState("");
 
@@ -86,22 +87,26 @@ function StoryCard({ userID, storyID }) {
                         alignItems: 'start',
                         fontSize: '14px',
                     }}>
-                        <img
+                        <Image
                             className="profile-pic-story"
                             src={story.profile_picture_url || '/default-profile.png'}
                             alt="Profile Picture"
+                            width={30} // Replace with desired width
+                            height={30} // Replace with desired height
+                            objectFit="cover" // Optional: maintain aspect ratio
                         />
                         <CardContent style={{textAlign: 'left', justifyContent: 'start'}}>
                             <span style={{color: "#1a8488", fontSize: 14}}> {story.username} </span><br/><br/>
                             {story.content}
                             <br/><br/>
                             {story.has_image && story.image_url && (
-                                <img
+                                <Image
                                     className="story-image"
-                                    src={story.image_url}
+                                    src={story.image_url || '/default-story.png'} // Fallback to a default image if `story.image_url` is not available
                                     alt="Story"
-                                    width={200}
-                                    height={200}
+                                    width={200} // Replace with your desired width
+                                    height={200} // Replace with your desired height
+                                    objectFit="cover" // Optional: Adjust how the image fits
                                 />
                             )}
                             <span style={{color: "#a9a9a9", fontSize: 10}}>
@@ -126,11 +131,14 @@ function StoryCard({ userID, storyID }) {
                     transition: 'max-height 0.5s ease',
 
                 }}>
-                    <img
+                    <Image
                         className="profile-pic-story"
-                        style={{width: '30px', height: '30px', margin: '10px'}}
-                        src={'/default-profile.png'}
+                        src="/default-profile.png"
                         alt="Profile Picture"
+                        width={30} // Set the width of the image
+                        height={30} // Set the height of the image
+                        style={{ margin: '10px' }} // Apply margin using inline style or CSS class
+                        objectFit="cover" // Optional: Adjust how the image fits within the specified dimensions
                     />
                     <textarea
                         style={{
