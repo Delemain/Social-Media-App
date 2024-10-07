@@ -113,7 +113,7 @@ export default function Account() {
     };
 
     fetchUserData();
-  }, []);
+  }, [error]);
 
   const handleDeleteAccount = async () => {
     const userId = localStorage.getItem("userid");
