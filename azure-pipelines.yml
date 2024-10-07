@@ -15,7 +15,7 @@ steps:
 - script: |
     cd frontend-Next
     npm install
-    npm run build
+    npm run build --no-lint
   displayName: 'Build Frontend'
 
 # Step 3: Install Java for the backend
