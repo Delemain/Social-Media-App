@@ -3,7 +3,7 @@ import {cn} from "@/lib/utils";
 import {className} from "postcss-selector-parser";
 import Image from 'next/image';
 
-function CommentCard({ commentID }) {
+function CommentCard({ commentID }: { commentID: string | number }) {
     const [comment, setComment] = useState(null);  // Initialize as null for single comment or empty array for multiple
 
     useEffect(() => {
