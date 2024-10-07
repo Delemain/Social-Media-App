@@ -32,33 +32,3 @@ steps:
     ./mvnw clean install
   displayName: 'Run Backend Tests and Build'
   continueOnError: true  # Continue pipeline even if tests fail
-
-# Step 6: Publish backend test results
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFiles: '**/target/surefire-reports/*.xml'
-    failTaskOnFailedTests: false
-  displayName: 'Publish Backend Test Results'
-
-# Step 7: Copy Backend Artifacts
-- task: CopyFiles@2
-  inputs:
-    contents: '**/target/*.jar'
-    targetFolder: '$(Build.ArtifactStagingDirectory)/backend'
-  displayName: 'Copy Backend Artifacts'
-
-# Step 8: Copy Frontend Artifacts
-- task: CopyFiles@2
-  inputs:
-    contents: '**/frontend-Next/out/**/*'
-    targetFolder: '$(Build.ArtifactStagingDirectory)/frontend'
-  displayName: 'Copy Frontend Artifacts'
-
-# Step 9: Publish Artifacts
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathToPublish: '$(Build.ArtifactStagingDirectory)'
-    artifactName: 'drop'
-    publishLocation: 'Container'
-  displayName: 'Publish Artifacts'
