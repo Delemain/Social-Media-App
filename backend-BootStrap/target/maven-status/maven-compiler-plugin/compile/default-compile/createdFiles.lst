@@ -2,6 +2,7 @@ socialmediaapp/repository/StoryRepository.class
 socialmediaapp/SocialMediaAppApplication.class
 socialmediaapp/ExampleController.class
 socialmediaapp/StoryController.class
+socialmediaapp/dao/NewsfeedDao.class
 socialmediaapp/model/UserModel.class
 socialmediaapp/model/StoryModel.class
 socialmediaapp/SocialMediaAppApplication$WebConfig.class

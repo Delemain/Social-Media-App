@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import {Card, CardContent, CardTitle} from "@/components/ui/card";
-import {Button} from "@/components/ui/button";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import "./NewsFeed.css";
-function PostCard() {
+
+function PostCard({ fetchStories }) {
     const [content, setContent] = useState("");
     const [error, setError] = useState<string | null>(null);
 
@@ -18,7 +19,7 @@ function PostCard() {
         };
 
         try {
-            const response = await fetch("http://localhost:8080/api/post", {
+            const response = await fetch("http://localhost:8080/api/story/post", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -32,6 +33,8 @@ function PostCard() {
 
             // Clear the content after successful post
             setContent("");
+            setError("Story Posted");
+            window.location.reload();
 
         } catch (err) {
             console.error("Error posting story:", err);
@@ -43,25 +46,28 @@ function PostCard() {
         <Card
             style={{
                 width: '500px', // Set a fixed width (adjust as needed)
-                margin: '0 auto', // Optional: Center the card horizontally
+                margin: '0 auto', // Center the card horizontally
+                borderTopLeftRadius: '0',
+                borderTopRightRadius: '0',
+                borderBottomLeftRadius: '0',
+                borderBottomRightRadius: '0',
             }}
         >
             <CardTitle className="text-2xl"
                        style={{
-                           margin: '10px, 0, 0, 0', // Optional: Center the card horizontally
-
-            }}>New story</CardTitle>
+                           margin: '10px 0 0 0', // Correct margin format
+                       }}>New story</CardTitle>
             <CardContent
                 style={{
-                padding: '20px', // Optional: Center the card horizontally
-            }}>
+                    padding: '20px', // Padding for card content
+                }}>
                 <textarea style={{
                     width: '400px',
                     height: '200px',
                 }}
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                    placeholder="Write your story..."
+                          value={content}
+                          onChange={(e) => setContent(e.target.value)}
+                          placeholder="Write your story..."
                 />
                 <br/><br/>
                 <Button onClick={handlePostStory}>Post Story</Button>
