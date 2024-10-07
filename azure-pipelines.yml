@@ -5,18 +5,12 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-# Step 1: Install Java 17 using the UseJavaVersion task
-- task: UseJavaVersion@1
-  inputs:
-    version: '17.x'
-    architecture: 'x64'
-  displayName: 'Install Java 17'
-
-# Step 2: Check the installed Java version
-- script: |
-    java -version
-    javac -version
-  displayName: 'Check Java Version'
+  - task: JavaToolInstaller@0
+    displayName: 'Install Java 17'
+    inputs:
+      versionSpec: '17'
+      jdkArchitectureOption: 'x64'
+      jdkSourceOption: 'PreInstalled'
 
 # Step 3: Install Node.js for frontend
 - task: NodeTool@0
