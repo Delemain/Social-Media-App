@@ -21,7 +21,7 @@ steps:
 
 # Step 4: Run backend tests and build
 - script: |
-    cd ../backend-BootStrap
+    cd backend-BootStrap
     ./mvnw clean test
     ./mvnw clean install
   displayName: 'Run Backend Tests and Build'
