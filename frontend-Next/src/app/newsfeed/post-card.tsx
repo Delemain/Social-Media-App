@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import "./NewsFeed.css";
 
 function PostCard() {
-    const userId = localStorage.getItem("userid");
+    const userId = typeof window !== 'undefined' ? localStorage.getItem("userid") : null;
     const [content, setContent] = useState("");
     const [error, setError] = useState<string | null>(null);
 

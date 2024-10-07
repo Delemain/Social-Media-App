@@ -3,8 +3,16 @@ import {cn} from "@/lib/utils";
 import {className} from "postcss-selector-parser";
 import Image from 'next/image';
 
+interface Comment {
+    profile_picture_url: string;
+    username: string;
+    content: string;
+    created_at: string;
+}
+
 function CommentCard({ commentID }: { commentID: string | number }) {
-    const [comment, setComment] = useState(null);  // Initialize as null for single comment or empty array for multiple
+
+    const [comment, setComment] = useState<Comment | null>(null);
 
     useEffect(() => {
         // Check that userID, storyID, and commentID are defined
@@ -47,7 +55,7 @@ function CommentCard({ commentID }: { commentID: string | number }) {
                         width: '30px',
                         height: '30px',
                     }}
-                    src={comment.profile_picture_url || '/default-profile.png'}
+                    src={comment?.profile_picture_url || '/default-profile.png'}
                     alt="Profile Picture"
                     width={30}
                     height={30}

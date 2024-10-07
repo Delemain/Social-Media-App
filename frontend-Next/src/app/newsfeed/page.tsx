@@ -5,8 +5,14 @@ import StoryCard from "./story-card";
 import PostCard from "./post-card";
 import NavigationBar from "@/components/navigation/navigationbar";
 import "./NewsFeed.css";
+
+interface Story {
+    userid: string; // Use the correct type: string, number, etc.
+    storyid: string; // Use the correct type: string, number, etc.
+    // Add other properties if needed
+}
 function NewsFeed() {
-    const [storyIds, setStoryIds] = useState([]);
+    const [storyIds, setStoryIds] = useState<Story[]>([]);
 
     const fetchStories = () => {
         fetch("http://localhost:8080/api/story/all")

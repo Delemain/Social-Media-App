@@ -5,11 +5,27 @@ import CommentCard from "@/app/newsfeed/comment-card";
 import { Button } from "@/components/ui/button";
 import Image from 'next/image';
 
+interface StoryCardProps {
+    userID: string | number; // Specify the type of userID
+    storyID: string | number; // Specify the type of storyID
+}
+interface Story {
+    profile_picture_url: string;
+    userid: string;
+    username: string;
+    content: string;
+    has_image? : boolean;
+    image_url: string;
+    date: string;
+}
+interface Comment {
+    comment_id: string | number;
+}
 
-function StoryCard({ userID, storyID }) {
-    const userId = localStorage.getItem("userid");
-    const [story, setStory] = useState(null);
-    const [commentIds, setCommentIds] = useState([]);
+function StoryCard({ userID, storyID }: StoryCardProps) {
+    const userId = typeof window !== 'undefined' ? localStorage.getItem("userid") : null;
+    const [story, setStory] = useState<Story | null>(null);
+    const [commentIds, setCommentIds] = useState<Comment[]>([]); // Use the Comment[] type for the state
     const [commentsExpanded /*, setCommentsExpanded*/] = useState(false);
     const [commentTabExpanded, setCommentTabExpanded] = useState(false);
     const [content, setContent] = useState("");
