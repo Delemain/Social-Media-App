@@ -5,26 +5,26 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-# Step 1: Install Node.js for frontend
+# Step 1: Install Java 17 from AdoptOpenJDK
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '17.x'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'AdoptOpenJDK' # Correctly specify the source to download JDK
+  displayName: 'Install Java 17'
+
+# Step 2: Install Node.js for frontend
 - task: NodeTool@0
   inputs:
     versionSpec: '20.x'
   displayName: 'Install Node.js'
 
-# Step 2: Install frontend dependencies and build
+# Step 3: Install frontend dependencies and build
 - script: |
     cd frontend-Next
     npm install
     npm run build
   displayName: 'Build Frontend'
-
-# Step 3: Install Java 17 from AdoptOpenJDK
-- task: JavaToolInstaller@0
-  inputs:
-    versionSpec: '17.x'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'AdoptOpenJDK' # Download Java 17 from AdoptOpenJDK
-  displayName: 'Install Java 17'
 
 # Step 4: Run backend tests and build
 - script: |
