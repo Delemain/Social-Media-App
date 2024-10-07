@@ -5,12 +5,12 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-  - task: JavaToolInstaller@0
-    displayName: 'Install Java 17'
-    inputs:
-      versionSpec: '17'
-      jdkArchitectureOption: 'x64'
-      jdkSourceOption: 'PreInstalled'
+- task: JavaToolInstaller@0
+  displayName: 'Install Java 17'
+  inputs:
+    versionSpec: '17'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
 
 # Step 3: Install Node.js for frontend
 - task: NodeTool@0
