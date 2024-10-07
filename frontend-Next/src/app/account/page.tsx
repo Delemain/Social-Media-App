@@ -117,10 +117,7 @@ export default function Account() {
   const handleDeleteAccount = async () => {
     const userId = localStorage.getItem("userid");
     if (!userId) {
-      setError("User is not logged in");
-      setAlertMessage(error);
-      setAlertTitle("Something went wrong!")
-      setShowAlert(true);
+      router.push("/");
       return;
     }
 
@@ -132,6 +129,14 @@ export default function Account() {
       if (res.ok) {
         // Clear localStorage and redirect to home or login page
         localStorage.removeItem("userid");
+        setUserData({
+          firstName: "",
+          lastName: "",
+          username: "",
+          password: "",
+          email: "",
+          bio: "",
+        }); // Clear user data
         router.push("/");
       } else {
         const errorText = await res.text();
