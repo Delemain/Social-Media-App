@@ -80,6 +80,10 @@ export default function Logs() {
     fetchLogs();
   }, [router]);
 
+  const handleBack = () => {
+    router.back();
+  };
+
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
@@ -160,6 +164,14 @@ export default function Logs() {
               </div>
             </CardFooter>
           </Card>
+          <Button
+                  variant="secondary"
+                  type="button"
+                  className="flex-1"
+                  onClick={handleBack}
+                >
+                  Back to Account
+                </Button>
         </main>
       </div>
     </div>
