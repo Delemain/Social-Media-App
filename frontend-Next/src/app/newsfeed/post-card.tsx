@@ -5,7 +5,8 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import "./NewsFeed.css";
 
-function PostCard({ fetchStories }) {
+function PostCard() {
+    const userId = localStorage.getItem("userid");
     const [content, setContent] = useState("");
     const [error, setError] = useState<string | null>(null);
 
@@ -13,7 +14,7 @@ function PostCard({ fetchStories }) {
         setError(null); // Clear any previous error
 
         const data = {
-            userID: 1,  // Assuming the userID is hardcoded here, adjust as needed
+            userID: userId,  // Assuming the userID is hardcoded here, adjust as needed
             content,
             hasImage: false,
         };

@@ -5,6 +5,7 @@ import CommentCard from "@/app/newsfeed/comment-card";
 import { Button } from "@/components/ui/button";
 
 function StoryCard({ userID, storyID }) {
+    const userId = localStorage.getItem("userid");
     const [story, setStory] = useState(null);
     const [commentIds, setCommentIds] = useState([]);
     const [commentsExpanded, setCommentsExpanded] = useState(false);
@@ -33,9 +34,9 @@ function StoryCard({ userID, storyID }) {
 
     const handlePostComment = async () => {
         const data = {
-            userID: 1, // You may want to replace this with actual logged-in user ID
+            userID: userID, // You may want to replace this with actual logged-in user ID
             storyID: storyID,
-            posterID: userID,
+            posterID: userId,
             commentParent: null,
             content: content
         };
@@ -53,6 +54,7 @@ function StoryCard({ userID, storyID }) {
                 throw new Error("Failed to post comment");
             }
 
+            toggleCommentTab();
             setContent(""); // Clear the comment box after posting
             // Fetch updated comments
             fetch(`http://localhost:8080/api/story/comments/${userID}-${storyID}`)
@@ -92,7 +94,7 @@ function StoryCard({ userID, storyID }) {
                         <CardContent style={{textAlign: 'left', justifyContent: 'start'}}>
                             <span style={{color: "#1a8488", fontSize: 14}}> {story.username} </span><br/><br/>
                             {story.content}
-                            <br/>
+                            <br/><br/>
                             {story.has_image && story.image_url && (
                                 <img
                                     className="story-image"
@@ -103,8 +105,7 @@ function StoryCard({ userID, storyID }) {
                                 />
                             )}
                             <span style={{color: "#a9a9a9", fontSize: 10}}>
-                                {new Date(story.date).toLocaleString()}
-                            </span>
+                                {new Date(story.date).toLocaleString()}</span>
                             &#8196;
                             <button className='comment-button'>Like</button>
                             &#8196;
@@ -158,6 +159,8 @@ function StoryCard({ userID, storyID }) {
                     maxHeight: commentsExpanded ? '600px' : '200px',
                     overflowY: 'auto',
                     transition: 'max-height 0.5s ease',
+                    borderBottomLeftRadius: '0',
+                    borderBottomRightRadius: '0',
                     borderTopLeftRadius: '0',
                     borderTopRightRadius: '0',
                     borderTop: '0px'

@@ -58,7 +58,9 @@ function CommentCard({ commentID }) {
                             <span style={{ color: "#1a8488", fontSize: 12}}> {comment.username} </span>
                             <span style={{ fontSize: 10}}> {comment.content} </span>
                         </div>
-                        <span style={{ color: "#a9a9a9", fontSize: 8}}>{new Date(comment.date).toLocaleString()} </span>
+                        <span style={{ color: "#a9a9a9", fontSize: 8}}>
+                            {new Date(comment.created_at).toLocaleString()}
+                        </span>
                 </div>
             </div>
         </div>

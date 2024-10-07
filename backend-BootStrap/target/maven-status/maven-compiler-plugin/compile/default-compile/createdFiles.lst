@@ -1,8 +1,14 @@
-socialmediaapp/repository/StoryRepository.class
-socialmediaapp/SocialMediaAppApplication.class
+socialmediaapp/controller/AuthController.class
 socialmediaapp/ExampleController.class
 socialmediaapp/StoryController.class
+socialmediaapp/model/StoryModel.class
+socialmediaapp/model/AccessLog.class
+socialmediaapp/model/LoginRequest.class
+socialmediaapp/repository/StoryRepository.class
+socialmediaapp/repository/UserRepository.class
+socialmediaapp/SocialMediaAppApplication.class
+socialmediaapp/config/WebConfig.class
 socialmediaapp/dao/NewsfeedDao.class
 socialmediaapp/model/UserModel.class
-socialmediaapp/model/StoryModel.class
+socialmediaapp/repository/AccessLogRepository.class
 socialmediaapp/SocialMediaAppApplication$WebConfig.class

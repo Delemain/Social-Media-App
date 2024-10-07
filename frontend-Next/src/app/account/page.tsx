@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 // import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -28,6 +28,7 @@ import {
   AlertDialogAction,
 } from "@/components/ui/alert-dialog";
 import { AlertCircle } from "lucide-react"
+import NavigationBar from "@/components/navigation/navigationbar";
 
 export default function Account() {
   const router = useRouter(); // Initialise the router
@@ -207,6 +208,7 @@ export default function Account() {
 
   return (
     <main className="flex flex-col justify-center items-center size-full">
+      <NavigationBar/>
       <div className="absolute top-4 right-4">
         <ModeToggle />
       </div>

@@ -26,6 +26,7 @@ function NewsFeed() {
     return (
         <div className={"news-feed"}>
 
+
                 <NavigationBar/>
 
             <div style = {{
@@ -34,10 +35,10 @@ function NewsFeed() {
                 flexDirection: 'column',
                 alignItems: 'start',
             }}>
-                <PostCard fetchStories={fetchStories}/>
+                <PostCard/>
                 {storyIds.length > 0 ? (
                     storyIds.map((story, index) => (
-                        <StoryCard key={index} userID={story.user_id} storyID={story.story_id}/> // Use a unique identifier, fallback to index
+                        <StoryCard key={index} userID={story.userid} storyID={story.storyid}/> // Use a unique identifier, fallback to index
                     ))
                 ) : (
                     <p>No stories found.</p>
