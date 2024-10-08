@@ -3,29 +3,11 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import "./NewsFeed.css";
 import CommentCard from "@/app/newsfeed/comment-card";
 import { Button } from "@/components/ui/button";
-import Image from 'next/image';
 
-interface StoryCardProps {
-    userID: string | number; // Specify the type of userID
-    storyID: string | number; // Specify the type of storyID
-}
-interface Story {
-    profile_picture_url: string;
-    userid: string;
-    username: string;
-    content: string;
-    has_image? : boolean;
-    image_url: string;
-    date: string;
-}
-interface Comment {
-    comment_id: string | number;
-}
-
-function StoryCard({ userID, storyID }: StoryCardProps) {
-    const userId = typeof window !== 'undefined' ? localStorage.getItem("userid") : null;
-    const [story, setStory] = useState<Story | null>(null);
-    const [commentIds, setCommentIds] = useState<Comment[]>([]); // Use the Comment[] type for the state
+function StoryCard({ userID, storyID }) {
+    const userId = localStorage.getItem("userid");
+    const [story, setStory] = useState(null);
+    const [commentIds, setCommentIds] = useState([]);
     const [commentsExpanded /*, setCommentsExpanded*/] = useState(false);
     const [commentTabExpanded, setCommentTabExpanded] = useState(false);
     const [content, setContent] = useState("");
@@ -104,26 +86,24 @@ function StoryCard({ userID, storyID }: StoryCardProps) {
                         alignItems: 'start',
                         fontSize: '14px',
                     }}>
-                        <Image
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                             className="profile-pic-story"
                             src={story.profile_picture_url || '/default-profile.png'}
                             alt="Profile Picture"
-                            width={30} // Replace with desired width
-                            height={30} // Replace with desired height
-                            objectFit="cover" // Optional: maintain aspect ratio
                         />
                         <CardContent style={{textAlign: 'left', justifyContent: 'start'}}>
                             <span style={{color: "#1a8488", fontSize: 14}}> {story.username} </span><br/><br/>
                             {story.content}
                             <br/><br/>
                             {story.has_image && story.image_url && (
-                                <Image
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
                                     className="story-image"
-                                    src={story.image_url || '/default-story.png'} // Fallback to a default image if `story.image_url` is not available
+                                    src={story.image_url}
                                     alt="Story"
-                                    width={200} // Replace with your desired width
-                                    height={200} // Replace with your desired height
-                                    objectFit="cover" // Optional: Adjust how the image fits
+                                    width={200}
+                                    height={200}
                                 />
                             )}
                             <span style={{color: "#a9a9a9", fontSize: 10}}>
@@ -148,14 +128,12 @@ function StoryCard({ userID, storyID }: StoryCardProps) {
                     transition: 'max-height 0.5s ease',
 
                 }}>
-                    <Image
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                         className="profile-pic-story"
-                        src="/default-profile.png"
+                        style={{width: '30px', height: '30px', margin: '10px'}}
+                        src={'/default-profile.png'}
                         alt="Profile Picture"
-                        width={30} // Set the width of the image
-                        height={30} // Set the height of the image
-                        style={{ margin: '10px' }} // Apply margin using inline style or CSS class
-                        objectFit="cover" // Optional: Adjust how the image fits within the specified dimensions
                     />
                     <textarea
                         style={{

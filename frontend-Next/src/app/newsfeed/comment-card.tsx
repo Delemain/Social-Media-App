@@ -1,18 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {cn} from "@/lib/utils";
 import {className} from "postcss-selector-parser";
-import Image from 'next/image';
 
-interface Comment {
-    profile_picture_url: string;
-    username: string;
-    content: string;
-    created_at: string;
-}
-
-function CommentCard({ commentID }: { commentID: string | number }) {
-
-    const [comment, setComment] = useState<Comment | null>(null);
+function CommentCard({ commentID }) {
+    const [comment, setComment] = useState(null);  // Initialize as null for single comment or empty array for multiple
 
     useEffect(() => {
         // Check that userID, storyID, and commentID are defined
@@ -48,18 +39,16 @@ function CommentCard({ commentID }: { commentID: string | number }) {
                 flexDirection: 'row',
                 margin: '0'
             }}>
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                     className="profile-pic-story"
                     style={{
                         margin: '10px',
                         width: '30px',
-                        height: '30px',
+                        height: '30px'
                     }}
-                    src={comment?.profile_picture_url || '/default-profile.png'}
+                    src={comment.profile_picture_url || '/default-profile.png'}
                     alt="Profile Picture"
-                    width={30}
-                    height={30}
-                    objectFit="cover" // Optional: maintain aspect ratio and cover the specified area
                 />
                 <div style={{
                     display:'flex',
