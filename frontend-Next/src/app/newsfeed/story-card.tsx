@@ -4,10 +4,29 @@ import "./NewsFeed.css";
 import CommentCard from "@/app/newsfeed/comment-card";
 import { Button } from "@/components/ui/button";
 
-function StoryCard({ userID, storyID }) {
+// Define the props interface
+interface StoryCardProps {
+    userID: string; // or number, depending on your actual data type
+    storyID: string; // or number, depending on your actual data type
+}
+
+interface Story {
+    profile_picture_url: string;
+    username: string;
+    content: string;
+    has_image: boolean;
+    image_url?: string; // Optional property
+    date: string; // Assuming date is a string, modify if it's a different type
+}
+
+interface Comment {
+    comment_id: string; // Assuming comment_id is a string; change type if needed
+}
+
+function StoryCard({ userID, storyID }: StoryCardProps) {
     const userId = localStorage.getItem("userid");
-    const [story, setStory] = useState(null);
-    const [commentIds, setCommentIds] = useState([]);
+    const [story, setStory] = useState<Story | null>(null);
+    const [commentIds, setCommentIds] = useState<Comment[]>([]);
     const [commentsExpanded /*, setCommentsExpanded*/] = useState(false);
     const [commentTabExpanded, setCommentTabExpanded] = useState(false);
     const [content, setContent] = useState("");
@@ -74,7 +93,7 @@ function StoryCard({ userID, storyID }) {
 
     return (
         <div>
-            <div style={{marginTop: '10px'}}>
+            <div style={{ marginTop: '10px' }}>
                 <Card style={{
                     maxWidth: '500px',
                     borderRadius: '0',
@@ -92,10 +111,10 @@ function StoryCard({ userID, storyID }) {
                             src={story.profile_picture_url || '/default-profile.png'}
                             alt="Profile Picture"
                         />
-                        <CardContent style={{textAlign: 'left', justifyContent: 'start'}}>
-                            <span style={{color: "#1a8488", fontSize: 14}}> {story.username} </span><br/><br/>
+                        <CardContent style={{ textAlign: 'left', justifyContent: 'start' }}>
+                            <span style={{ color: "#1a8488", fontSize: 14 }}> {story.username} </span><br /><br />
                             {story.content}
-                            <br/><br/>
+                            <br /><br />
                             {story.has_image && story.image_url && (
                                 // eslint-disable-next-line @next/next/no-img-element
                                 <img
@@ -106,7 +125,7 @@ function StoryCard({ userID, storyID }) {
                                     height={200}
                                 />
                             )}
-                            <span style={{color: "#a9a9a9", fontSize: 10}}>
+                            <span style={{ color: "#a9a9a9", fontSize: 10 }}>
                                 {new Date(story.date).toLocaleString()}</span>
                             &#8196;
                             <button className='comment-button'>Like</button>
@@ -131,7 +150,7 @@ function StoryCard({ userID, storyID }) {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                         className="profile-pic-story"
-                        style={{width: '30px', height: '30px', margin: '10px'}}
+                        style={{ width: '30px', height: '30px', margin: '10px' }}
                         src={'/default-profile.png'}
                         alt="Profile Picture"
                     />
@@ -150,7 +169,7 @@ function StoryCard({ userID, storyID }) {
                     />
                     <Button
                         onClick={handlePostComment}
-                        style={{margin: '10px', height: '30px', width: '60px', fontSize: '10px'}}>
+                        style={{ margin: '10px', height: '30px', width: '60px', fontSize: '10px' }}>
                         Comment
                     </Button>
                 </Card>
@@ -172,7 +191,7 @@ function StoryCard({ userID, storyID }) {
 
                     {commentIds.length > 0 ? (
                         commentIds.map((comment) => (
-                            <CommentCard key={comment.comment_id} commentID={comment.comment_id}/>
+                            <CommentCard key={comment.comment_id} commentID={comment.comment_id} />
                         ))
                     ) : (
                         <p>No comments yet.</p>

@@ -1,12 +1,25 @@
 import React, { useState, useEffect } from "react";
-import {cn} from "@/lib/utils";
-import {className} from "postcss-selector-parser";
+import { cn } from "@/lib/utils";
+import { className } from "postcss-selector-parser";
 
-function CommentCard({ commentID }) {
-    const [comment, setComment] = useState(null);  // Initialize as null for single comment or empty array for multiple
+// Define the Comment interface
+interface Comment {
+    userid: string;
+    profile_picture_url: string;
+    username: string;
+    content: string;
+    created_at: string; // Assuming created_at is of type string
+}
+
+interface CommentCardProps {
+    commentID: string;  // Assuming commentID is of type string
+}
+
+function CommentCard({ commentID }: CommentCardProps) {
+    // Type the comment state as 'Comment | null' to allow null as the initial state
+    const [comment, setComment] = useState<Comment | null>(null);
 
     useEffect(() => {
-        // Check that userID, storyID, and commentID are defined
         if (commentID) {
             fetch(`http://localhost:8080/api/story/comment/${commentID}`)
                 .then(response => {
@@ -19,21 +32,19 @@ function CommentCard({ commentID }) {
                 .then(data => setComment(data))
                 .catch(error => console.error("Error fetching comments:", error));
         }
-    }, ); // Ensure that it re-fetches when IDs change
+    }, [commentID]); // Include commentID as a dependency to re-fetch when it changes
 
     if (!comment) {
         return <div>comment didnt load...</div>;
     }
 
     return (
-        <div className={cn(
-            "border text-card-foreground",
-            className)}
-        style = {{
-            borderTop: '0px',
-            borderLeft: '0px',
-            borderRight: '0px',
-        }}>
+        <div className={cn("border text-card-foreground", className)}
+             style={{
+                 borderTop: '0px',
+                 borderLeft: '0px',
+                 borderRight: '0px',
+             }}>
             <div style={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -51,21 +62,21 @@ function CommentCard({ commentID }) {
                     alt="Profile Picture"
                 />
                 <div style={{
-                    display:'flex',
-                    flexDirection:'column',
+                    display: 'flex',
+                    flexDirection: 'column',
                     textAlign: 'start'
                 }}>
-                        <div>
-                            <span style={{ color: "#1a8488", fontSize: 12}}> {comment.username} </span>
-                            <span style={{ fontSize: 10}}> {comment.content} </span>
-                        </div>
-                        <span style={{ color: "#a9a9a9", fontSize: 8}}>
-                            {new Date(comment.created_at).toLocaleString()}
-                        </span>
+                    <div>
+                        <span style={{ color: "#1a8488", fontSize: 12 }}> {comment.username} </span>
+                        <span style={{ fontSize: 10 }}> {comment.content} </span>
+                    </div>
+                    <span style={{ color: "#a9a9a9", fontSize: 8 }}>
+                        {new Date(comment.created_at).toLocaleString()}
+                    </span>
                 </div>
             </div>
         </div>
-);
+    );
 }
 
 export default CommentCard;
