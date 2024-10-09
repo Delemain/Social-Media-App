@@ -14,7 +14,7 @@ Welcome to the Social Media App project! This is a social media platform built u
 │   │   │   │   │   └── SocialMediaAppApplication.java  # Main application entry point  
 │   │   └── resources/  
 │   │       └── application.properties        # Configuration properties  
-├── frontend-Next/                 # Frontend code with Next.js (Deep  
+├── frontend-Next/                 # Frontend code with Next.js (Deep)  
 │   ├── pages/  
 │   │   ├── login.tsx              # Login feature (Deep)  
 │   │   ├── register.tsx           # Registration feature (Deep)  
@@ -49,12 +49,12 @@ Welcome to the Social Media App project! This is a social media platform built u
 
 ### Backend
 
-1. Navigate to the `frontend-Next` directory.
+1. Navigate to the `backend-BootStrap` directory.
 2. Run the following command to start the Spring Boot application: ```mvn spring-boot:run```
 
 ### Frontend
 
-1. Navigate to the `backend-BootStrap` directory.
+1. Navigate to the `frontend-Next` directory.
 2. Run the following commands to install dependencies and start the application:
 ```
 npm install
