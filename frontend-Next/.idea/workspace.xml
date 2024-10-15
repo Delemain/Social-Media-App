@@ -4,45 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="985d3917-262e-4d72-bda5-f7002e63eba9" name="Changes" comment="Fixing things before merge">
-      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.vscode/settings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend-BootStrap/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend-BootStrap/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend-BootStrap/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend-BootStrap/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend-BootStrap/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend-BootStrap/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend-BootStrap/target/SocialMediaApp-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend-BootStrap/target/SocialMediaApp-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/WebConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/controller/ExampleController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/controller/StoryController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend-BootStrap/target/maven-archiver/pom.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend-BootStrap/target/surefire-reports/2024-10-15T11-34-11_321.dumpstream" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/src/main/java/socialmediaapp/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/src/main/java/socialmediaapp/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/ExampleController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/SocialMediaAppApplication$WebConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/SocialMediaAppApplication$WebConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/SocialMediaAppApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/SocialMediaAppApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/StoryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/config/WebConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/controller/AuthController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/dao/NewsfeedDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/dao/NewsfeedDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/model/AccessLog.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/model/AccessLog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/model/LoginRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/model/LoginRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/model/StoryModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/model/StoryModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/model/UserModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/model/UserModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/repository/AccessLogRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/repository/AccessLogRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/repository/StoryRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/repository/StoryRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/classes/socialmediaapp/repository/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/surefire-reports/TEST-com.example.SocialMediaApp.SocialMediaAppApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/surefire-reports/TEST-com.example.SocialMediaApp.SocialMediaAppApplicationTests.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/surefire-reports/com.example.SocialMediaApp.SocialMediaAppApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/surefire-reports/com.example.SocialMediaApp.SocialMediaAppApplicationTests.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend-BootStrap/target/test-classes/com/example/SocialMediaApp/SocialMediaAppApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend-BootStrap/target/test-classes/com/example/SocialMediaApp/SocialMediaAppApplicationTests.class" afterDir="false" />
-    </list>
+    <list default="true" id="985d3917-262e-4d72-bda5-f7002e63eba9" name="Changes" comment="Fixing things before merge" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,24 +13,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "VuMinhHoangLeCoding"
-  }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/deep-sohana/social-media-app.git",
-    "accountId": "1ec83df1-a056-423a-a3f3-9633747003c6"
-  }
-}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
-}</component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
   <component name="ProjectId" id="2lpZ3naQ267qCjWOPYwbsJiHWLr" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -78,9 +28,8 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Le-branch",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Project Workspace/social-media-app/frontend-Next",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/Users/griffinframe-szafjanski/Desktop/WebstormProjects/social-media-app/frontend-Next/src/app/news-feed",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",

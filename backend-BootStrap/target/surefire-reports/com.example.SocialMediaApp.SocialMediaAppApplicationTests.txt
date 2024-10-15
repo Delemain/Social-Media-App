@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.example.SocialMediaApp.SocialMediaAppApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.46 s -- in com.example.SocialMediaApp.SocialMediaAppApplicationTests
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.373 s -- in com.example.SocialMediaApp.SocialMediaAppApplicationTests
