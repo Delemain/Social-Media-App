@@ -8,8 +8,11 @@ function Navigationbar() {
             <Link href="/" passHref>
                 <Button type="submit">Home</Button>
             </Link>
-            <Link href="/news-feed" passHref>
+            <Link href="/newsfeed" passHref>
                 <Button type="submit">Newsfeed</Button>
+            </Link>
+            <Link href="/account" passHref>
+                <Button type="submit">Account</Button>
             </Link>
         </div>
     );

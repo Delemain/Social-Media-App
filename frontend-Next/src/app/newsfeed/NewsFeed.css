@@ -1,0 +1,33 @@
+.news-feed {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+
+}
+
+.story-image {
+    width: 460px;
+    height: auto;
+    object-fit: cover;
+    margin-top: 20px;
+}
+
+.profile-pic-story {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #edf6ff;
+}
+
+.comment-button {
+    color: #1b7491;
+    font-size: 14px;
+    margin-left:5px;
+}
+
+.comment-button:hover{
+    color: #289dc2;
+}
