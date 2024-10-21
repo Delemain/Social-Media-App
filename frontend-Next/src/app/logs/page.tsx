@@ -34,6 +34,7 @@ import {
 } from "@/components/ui/table";
 import { ModeToggle } from "@/components/mode-toggle";
 import { useRouter } from "next/navigation";
+import { Loading } from "@/components/ui/loading";
 
 interface Log {
   logid: string;
@@ -45,6 +46,7 @@ export default function Logs() {
   const [logs, setLogs] = useState<Log[]>([]); // Logs will be an array of Log objects
   const [error, setError] = useState("");
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
   // Fetch the logs for the logged-in user
   useEffect(() => {
@@ -74,6 +76,8 @@ export default function Logs() {
         } else {
           setError("An unknown error occurred");
         }
+      } finally{
+        setLoading(false);
       }
     };
 
@@ -85,6 +89,11 @@ export default function Logs() {
   };
 
   return (
+    loading ? (
+      <div className="flex justify-center items-center h-screen">
+      <div><Loading /></div>
+    </div>
+    ) : (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
         <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6"></header>
@@ -175,5 +184,6 @@ export default function Logs() {
         </main>
       </div>
     </div>
+    )
   );
 }
