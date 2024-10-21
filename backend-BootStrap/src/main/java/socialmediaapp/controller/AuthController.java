@@ -152,5 +152,17 @@ public class AuthController {
         }
     }
 
+    @PostMapping("/logout/{userid}")
+    public ResponseEntity<?> logout(@PathVariable Long userid) {
+        // Log the logout action to access_logs
+        Optional<UserModel> user = userRepository.findById(userid);
+        if (user.isPresent()) {
+            AccessLog logoutLog = new AccessLog(userid, "logout", LocalDateTime.now());
+            accessLogRepository.save(logoutLog);
+            return ResponseEntity.ok(Map.of("message", "Logout successful"));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+    }
 
 }
