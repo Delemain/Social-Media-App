@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 // import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -28,6 +28,7 @@ import {
   AlertDialogAction,
 } from "@/components/ui/alert-dialog";
 import { AlertCircle } from "lucide-react"
+import NavigationBar from "@/components/navigation/navigationbar";
 
 export default function Account() {
   const router = useRouter(); // Initialise the router
@@ -112,7 +113,7 @@ export default function Account() {
     };
 
     fetchUserData();
-  }, []);
+  }, [error]);
 
   const handleDeleteAccount = async () => {
     const userId = localStorage.getItem("userid");
@@ -156,6 +157,7 @@ export default function Account() {
 
   const handleUpdateDetails = async (e: React.FormEvent) => {
     e.preventDefault(); // Prevent the form from refreshing the page
+    setLoading(true);
 
     const userId = localStorage.getItem("userid");
     if (!userId) {
@@ -194,6 +196,9 @@ export default function Account() {
       setAlertMessage(error);
       setAlertTitle("Something went wrong!")
       setShowAlert(true);
+    } finally {
+      // Simulate a delay for loading
+        setLoading(false); 
     }
   };
 
@@ -202,12 +207,100 @@ export default function Account() {
   };
 
   const handleCancel = () => {
-    router.back();
+    const fetchUserData = async () => {
+      const userId = localStorage.getItem("userid"); // Retrieve userid from localStorage
+      if (!userId) {
+        console.error("User is not logged in");
+        setError("User is not logged in");
+        setAlertMessage(error);
+        setAlertTitle("Something went wrong!")
+        setShowAlert(true);
+        
+        return;
+      }
+
+      try {
+        const res = await fetch(`http://localhost:8080/api/user/${userId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          setUserData({
+            firstName: data.firstName || "",
+            lastName: data.lastName || "",
+            username: data.username || "",
+            password: data.password || "",
+            email: data.email || "",
+            bio: data.bio || "",
+          });
+        } else {
+          console.error("Failed to fetch user data");
+          setError(data);
+          setAlertMessage("Failed to fetch user data");
+          setAlertTitle("Something went wrong!")
+          setShowAlert(true);
+        }
+      } catch (err) {
+        console.error("Error fetching user data", err);
+        setError("An error occurred while fetching user data");
+        setAlertMessage(error);
+        setAlertTitle("Something went wrong!")
+        setShowAlert(true);
+      }
+    };
+
+    fetchUserData();
+  };
+
+  const handleLogout = async () => {
+    setLoading(true);
+    const userId = localStorage.getItem("userid");
+  
+    if (!userId) {
+      router.push("/"); // Redirect to home if no user is logged in
+      return;
+    }
+  
+    try {
+      const res = await fetch(`http://localhost:8080/api/logout/${userId}`, {
+        method: "POST", // Assuming POST for logging out
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (res.ok) {
+        // Remove userId from localStorage and redirect to login page
+        localStorage.removeItem("userid");
+        router.push("/");
+      } else {
+        const errorText = await res.text();
+        setError(errorText || "Failed to log out.");
+        setAlertMessage(errorText);
+        setAlertTitle("Logout Failed");
+        setShowAlert(true);
+      }
+    } catch (err) {
+      console.error("Error logging out", err);
+      setError("An error occurred while logging out.");
+      setAlertMessage("An error occurred while logging out.");
+      setAlertTitle("Logout Failed");
+      setShowAlert(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <main className="flex flex-col justify-center items-center size-full">
+      <NavigationBar/>
       <div className="absolute top-4 right-4">
+        <Button className="mr-5" onClick={handleLogout}>Logout</Button>
         <ModeToggle />
       </div>
       {loading ? (
