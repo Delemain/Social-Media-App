@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Globe } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { useRouter } from "next/navigation";
+import { Loading } from "@/components/ui/loading";
 
 export default function Register() {
   const [firstName, setFirstName] = useState("");
@@ -24,8 +25,10 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter(); // Next.js router for navigation
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
+    setLoading(true);
     e.preventDefault();
 
     const res = await fetch('http://localhost:8080/api/register', {
@@ -57,9 +60,15 @@ export default function Register() {
       const errorText = await res.text();
       setError(errorText || "Registration failed. Please try again.");
     }
+    setLoading(false);
 };
 
   return (
+    loading ? (
+      <div className="flex justify-center items-center h-screen">
+      <div><Loading /></div>
+    </div>
+    ) : (
     <main className="flex flex-col justify-center items-center size-full">
       <div className="absolute top-4 right-4">
         <ModeToggle />
@@ -150,5 +159,6 @@ export default function Register() {
         </CardContent>
       </Card>
     </main>
+    )
   );
 }
