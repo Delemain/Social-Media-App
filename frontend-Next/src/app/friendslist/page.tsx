@@ -103,7 +103,11 @@ export default function Friendslist() {
           setFriends(prevFriends => prevFriends.filter(friend => friend.userid !== friendID));
         }
         catch (err) {
-
+          if (err instanceof Error) {
+            setError(err.message || "Failed to delete friend");
+          } else {
+            setError("An unknown error occurred");
+          }
         }
       }
 
@@ -115,6 +119,9 @@ export default function Friendslist() {
                   <CardHeader>
                     <CardTitle>Friends List</CardTitle>
                   </CardHeader>
+
+                  {error && <div className="text-red-500">{error}</div>}
+
                   <CardContent>
                     <Table>
                       <TableHeader>
