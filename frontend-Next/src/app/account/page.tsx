@@ -185,10 +185,17 @@ export default function Account() {
         setShowAlert(true);
       } else {
         const errorText = await res.text();
-        setError(errorText);
-        setAlertMessage(errorText);
-        setAlertTitle("Update Failed")
-        setShowAlert(true);
+        if(errorText === "First name cannot be empty" || errorText === "First name cannot be empty" || errorText === "Last name cannot be empty" || errorText === "Username cannot be empty" || errorText === "Email cannot be empty" || errorText === "Password cannot be empty"){
+          setError(errorText);
+          setAlertMessage(errorText);
+          setAlertTitle("Update Unsuccessful!")
+          setShowAlert(true);
+        } else{
+          setError("Email or Username already in use.");
+          setAlertMessage("Email or Username already in use. Please try again!");
+          setAlertTitle("Update Unsuccessful!")
+          setShowAlert(true);
+        }
       }
     } catch (err) {
       console.error("Error updating user details", err);

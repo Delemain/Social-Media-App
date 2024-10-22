@@ -62,12 +62,13 @@ public class AuthController {
         if (userRepository.findByEmail(user.getEmail()) != null) {
             return ResponseEntity.status(400).body("Email already in use");
         }
+
+        if (userRepository.findByUsername(user.getUsername()) != null) {
+        return ResponseEntity.status(400).body("Username already in use");
+        }
         
         // Save the new user to the database
         userRepository.save(user);
-
-        // AccessLog registerLog = new AccessLog(user.getUserid(), "Account Created", LocalDateTime.now());
-        // accessLogRepository.save(registerLog);
 
         return ResponseEntity.ok("Registration successful!");
     }
@@ -125,6 +126,17 @@ public class AuthController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password cannot be empty");
             }
 
+            String currentUsername = existingUser.getUsername();
+                if (!updatedUser.getUsername().equals(currentUsername) && userRepository.findByUsername(updatedUser.getUsername()) != null) {
+                    return ResponseEntity.status(400).body("Username already in use");
+                }
+            
+            String currentEmail = existingUser.getEmail();
+                if (!updatedUser.getEmail().equals(currentEmail) && userRepository.findByEmail(updatedUser.getEmail()) != null) {
+                    return ResponseEntity.status(400).body("Email already in use");
+                }
+
+
             // Update fields
             existingUser.setFirstName(updatedUser.getFirstName());
             existingUser.setLastName(updatedUser.getLastName());
@@ -149,6 +161,7 @@ public class AuthController {
         }
     }
 
+    //Logout Method
     @PostMapping("/logout/{userid}")
     public ResponseEntity<?> logout(@PathVariable Long userid) {
         // Log the logout action to access_logs

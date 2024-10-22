@@ -16,6 +16,16 @@ import { Globe } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { useRouter } from "next/navigation";
 import { Loading } from "@/components/ui/loading";
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog";
+import { AlertCircle } from "lucide-react"
 
 export default function Register() {
   const [firstName, setFirstName] = useState("");
@@ -26,6 +36,9 @@ export default function Register() {
   const [error, setError] = useState("");
   const router = useRouter(); // Next.js router for navigation
   const [loading, setLoading] = useState(false);
+  const [showAlert, setShowAlert] = useState(false); // Add state to control alert visibility
+  const [alertMessage, setAlertMessage] = useState(""); // State to hold alert message
+  const [alertTitle, setAlertTitle] = useState(""); // State to hold alert message
 
   const handleSubmit = async (e: React.FormEvent) => {
     setLoading(true);
@@ -58,7 +71,18 @@ export default function Register() {
       router.push("/");
     } else {
       const errorText = await res.text();
-      setError(errorText || "Registration failed. Please try again.");
+      console.error(errorText);
+
+      if(errorText === "Email already in use"){
+        setError(errorText || "Registration failed. Please try again.");
+        setAlertMessage(errorText);
+        setAlertTitle("Registration Unsuccessful!")
+      } else{
+        setError("Username already in use");
+        setAlertMessage(error);
+        setAlertTitle("Registration Unsuccessful!")
+      }
+      setShowAlert(true);
     }
     setLoading(false);
 };
@@ -155,9 +179,23 @@ export default function Register() {
               Login
             </Link>
           </div>
-          {error && <p className="text-red-500 text-center">{error}</p>}
         </CardContent>
       </Card>
+            {/* Alert Dialog */}
+            <AlertDialog open={showAlert} onOpenChange={setShowAlert}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertCircle className="h-6 w-6" />
+            <AlertDialogTitle>{alertTitle}</AlertDialogTitle>
+            <AlertDialogDescription>{alertMessage}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={() => setShowAlert(false)}>
+              Ok
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </main>
     )
   );
