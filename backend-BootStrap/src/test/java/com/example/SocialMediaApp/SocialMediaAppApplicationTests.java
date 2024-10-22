@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 import socialmediaapp.dao.NewsfeedDao;
-import socialmediaapp.StoryController;
+import socialmediaapp.controller.StoryController;
 import socialmediaapp.SocialMediaAppApplication; // Correctly import the main application class
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

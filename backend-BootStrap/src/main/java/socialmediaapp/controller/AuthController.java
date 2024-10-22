@@ -11,10 +11,7 @@ import socialmediaapp.repository.UserRepository;
 import socialmediaapp.repository.AccessLogRepository;
 
 import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Optional;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
@@ -166,6 +163,110 @@ public class AuthController {
     }
 
     //Controller for Friend Request and Friendlist Management
+
+    //FriendList
+    //
+    //
+    @GetMapping("/friendslist/{userid}")
+    public ResponseEntity<?> getFriendslist(@PathVariable Long userid){
+        Optional<UserModel> userOptional = userRepository.findById(userid);
+        if(userOptional.isPresent()){
+            UserModel user = userOptional.get();
+            //retrieve ID list of friends
+            Set<Long> friendsListID = user.getFriendsList();
+            List<UserModel> friendsList = new ArrayList<>();
+            for (Long friendID : friendsListID) {
+                Optional<UserModel> friendOptional = userRepository.findById(friendID);
+                if (friendOptional.isPresent()) {
+                    friendsList.add(friendOptional.get());
+                }
+            }
+            return ResponseEntity.ok(friendsList);
+        } else {
+            return ResponseEntity.status(404).body(null);
+        }
+    }
+
+    @GetMapping("/user-search/{searchName}/{userid}")
+    public ResponseEntity<?> getUserSearch(@PathVariable String searchName, @PathVariable Long userid){
+        Optional<UserModel> userOptional = userRepository.findById(userid);
+        if(userOptional.isPresent()){
+            UserModel user = userOptional.get();
+            Set<Long> friendsListID = user.getFriendsList();
+            Set<UserModel> usersList = new HashSet<UserModel>();
+            if (searchName == null || searchName.trim().isEmpty()){
+                usersList.addAll(userRepository.findAll());
+            } else {
+                usersList.addAll(userRepository.findByFirstNameContaining(searchName));
+                usersList.addAll(userRepository.findByLastNameContaining(searchName));
+                usersList.addAll(userRepository.findByUsernameContaining(searchName));
+            }
+
+            Iterator<UserModel> iterator = usersList.iterator();
+            while (iterator.hasNext()) {
+                UserModel tempModel = iterator.next();
+                if (friendsListID.contains(tempModel.getUserid()) || tempModel.getUserid() == user.getUserid()) {
+                    iterator.remove();
+                }
+            }
+
+            List<UserModel> finalList = new ArrayList<>(usersList);
+            return ResponseEntity.ok(finalList);
+        } else {
+            return ResponseEntity.status(404).body(null);
+        }
+    }
+
+    @DeleteMapping("/friendslist/delete/{userid}/{friendID}")
+    public ResponseEntity<String> deleteFriend(@PathVariable Long userid, @PathVariable Long friendID) {
+        Optional<UserModel> userOptional = userRepository.findById(userid);
+        Optional<UserModel> friendOptional = userRepository.findById(friendID);
+        if (userOptional.isPresent() && friendOptional.isPresent()){
+            UserModel user = userOptional.get();
+            UserModel friend = friendOptional.get();
+
+            if (user.hasFriend(friend.getUserid()) && friend.hasFriend(user.getUserid())){
+                user.deleteFriend(friend.getUserid());
+                friend.deleteFriend(user.getUserid());
+
+                userRepository.save(user);  // Save the updated user
+                userRepository.save(friend); // Save the updated friend
+
+                return ResponseEntity.ok("Friend deleted successfully.");
+            } else {
+                return ResponseEntity.status(404).body("Friend not found.");
+            }
+        }
+        else {
+            return ResponseEntity.status(404).body(null);
+        }
+    }
+
+    @PutMapping("/user-search/add/{userid}/{friendID}")
+    public ResponseEntity<String> addFriend(@PathVariable Long userid, @PathVariable Long friendID){
+        Optional<UserModel> userOptional = userRepository.findById(userid);
+        Optional<UserModel> friendOptional = userRepository.findById(friendID);
+
+        if (userOptional.isPresent() && friendOptional.isPresent()) {
+            UserModel user = userOptional.get();
+            UserModel friend = friendOptional.get();
+
+            if (!(user.hasFriend(friend.getUserid())) && !(friend.hasFriend(user.getUserid()))){
+                user.addFriend(friend.getUserid());
+                friend.addFriend(user.getUserid());
+
+                userRepository.save(user);  // Save the updated user
+                userRepository.save(friend); // Save the updated friend
+
+                return ResponseEntity.ok("Friend added successfully.");
+            } else {
+                return ResponseEntity.status(404).body("Friend not found.");
+            }
+        }
+        else {
+            return ResponseEntity.status(404).body(null);
+        }
+    }
 
 
 }
