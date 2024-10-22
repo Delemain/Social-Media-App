@@ -79,7 +79,7 @@ export default function Register() {
         setAlertTitle("Registration Unsuccessful!")
       } else{
         setError("Username already in use");
-        setAlertMessage("Username already in use");
+        setAlertMessage(error);
         setAlertTitle("Registration Unsuccessful!")
       }
       setShowAlert(true);
