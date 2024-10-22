@@ -165,4 +165,7 @@ public class AuthController {
         }
     }
 
+    //Controller for Friend Request and Friendlist Management
+
+
 }
