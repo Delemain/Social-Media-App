@@ -2,6 +2,9 @@ package socialmediaapp.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "user_t")
 public class UserModel {
@@ -31,6 +34,12 @@ public class UserModel {
 
     @Column(name = "bio", length = 500)
     private String bio;
+
+    //Collection for FriendList
+    @ElementCollection
+    @CollectionTable(name = "user_friend", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "friend_id")
+    private Set<Long> friendList = new HashSet<>();
 
     // Default constructor
     public UserModel() {}
@@ -98,5 +107,26 @@ public class UserModel {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    //Getter and Setter for FriendList
+    public Set<Long> getFriendsList(){
+        return friendList;
+    }
+
+    public boolean hasFriend(Long friendID){
+        return friendID != null && friendList.contains(friendID);
+    }
+
+    public void addFriend(Long friendID){
+        if (!hasFriend(friendID)){
+            friendList.add(friendID);
+        }
+    }
+
+    public void deleteFriend(Long friendID){
+        if (hasFriend(friendID)){
+            friendList.remove(friendID);
+        }
     }
 }

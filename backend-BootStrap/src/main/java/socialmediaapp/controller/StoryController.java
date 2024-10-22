@@ -1,4 +1,4 @@
-package socialmediaapp;
+package socialmediaapp.controller;
 
 import socialmediaapp.dao.NewsfeedDao;
 import org.springframework.beans.factory.annotation.Autowired;

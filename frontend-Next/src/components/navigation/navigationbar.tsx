@@ -1,11 +1,10 @@
-import * as React from "react"
-import {Button} from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 function Navigationbar() {
     return (
-        <div className="absolute top-4 left-4">
-            <Link href="/" passHref>
+        <div className="absolute top-4 left-4 space-x-4">
+            <Link href="/home" passHref>
                 <Button type="submit">Home</Button>
             </Link>
             <Link href="/newsfeed" passHref>
@@ -13,6 +12,12 @@ function Navigationbar() {
             </Link>
             <Link href="/account" passHref>
                 <Button type="submit">Account</Button>
+            </Link>
+            <Link href="/friendslist" passHref>
+                <Button type="submit">Friends List</Button>
+            </Link>
+            <Link href="/search-user" passHref>
+                <Button type="submit">Search User</Button>
             </Link>
         </div>
     );
