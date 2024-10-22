@@ -129,6 +129,8 @@ export default function SearchUser() {
                         Search user
                     </Button>
 
+                    {error && <div className="text-red-500">{error}</div>}
+
                     <Table>
                       <TableHeader>
                         <TableRow>

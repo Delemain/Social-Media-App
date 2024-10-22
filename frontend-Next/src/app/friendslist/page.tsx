@@ -115,6 +115,9 @@ export default function Friendslist() {
                   <CardHeader>
                     <CardTitle>Friends List</CardTitle>
                   </CardHeader>
+
+                  {error && <div className="text-red-500">{error}</div>}
+                  
                   <CardContent>
                     <Table>
                       <TableHeader>
