@@ -164,6 +164,7 @@ public class AuthController {
         }
     }
 
+    //Logout Method
     @PostMapping("/logout/{userid}")
     public ResponseEntity<?> logout(@PathVariable Long userid) {
         // Log the logout action to access_logs
