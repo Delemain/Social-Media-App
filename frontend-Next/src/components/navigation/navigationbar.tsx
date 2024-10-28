@@ -19,6 +19,12 @@ function Navigationbar() {
             <Link href="/search-user" passHref>
                 <Button type="submit">Search User</Button>
             </Link>
+            <Link href="/direct_message" passHref>
+                <Button type="submit">Direct Messages</Button>
+            </Link>
+            <Link href="/group_chat" passHref>
+                <Button type="submit">Group Chats</Button>
+            </Link>
         </div>
     );
 }

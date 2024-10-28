@@ -1,13 +1,16 @@
-D:\Project Workspace\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\controller\AuthController.java
-D:\Project Workspace\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\controller\ExampleController.java
-D:\Project Workspace\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\controller\StoryController.java
-D:\Project Workspace\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\dao\NewsfeedDao.java
-D:\Project Workspace\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\model\AccessLog.java
-D:\Project Workspace\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\model\LoginRequest.java
-D:\Project Workspace\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\model\StoryModel.java
-D:\Project Workspace\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\model\UserModel.java
-D:\Project Workspace\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\repository\AccessLogRepository.java
-D:\Project Workspace\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\repository\StoryRepository.java
-D:\Project Workspace\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\repository\UserRepository.java
-D:\Project Workspace\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\SocialMediaAppApplication.java
-D:\Project Workspace\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\WebConfig.java
+C:\Maxim\Code\ASD\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\controller\AuthController.java
+C:\Maxim\Code\ASD\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\controller\ExampleController.java
+C:\Maxim\Code\ASD\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\controller\MessageController.java
+C:\Maxim\Code\ASD\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\controller\StoryController.java
+C:\Maxim\Code\ASD\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\dao\NewsfeedDao.java
+C:\Maxim\Code\ASD\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\model\AccessLog.java
+C:\Maxim\Code\ASD\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\model\LoginRequest.java
+C:\Maxim\Code\ASD\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\model\Message.java
+C:\Maxim\Code\ASD\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\model\StoryModel.java
+C:\Maxim\Code\ASD\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\model\UserModel.java
+C:\Maxim\Code\ASD\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\repository\AccessLogRepository.java
+C:\Maxim\Code\ASD\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\repository\MessageRepository.java
+C:\Maxim\Code\ASD\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\repository\StoryRepository.java
+C:\Maxim\Code\ASD\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\repository\UserRepository.java
+C:\Maxim\Code\ASD\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\SocialMediaAppApplication.java
+C:\Maxim\Code\ASD\social-media-app\backend-BootStrap\src\main\java\socialmediaapp\WebConfig.java
