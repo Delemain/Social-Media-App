@@ -27,6 +27,7 @@ import {
   TableHeader,
   TableRow
 } from "@/components/ui/table";
+import axios from "axios";
 
 interface User {
   userid: number;
@@ -269,8 +270,6 @@ export default function Home() {
 
       setActiveGroupChat({ ...newTempGC});
 
-      //edit the same shit, in the List
-
     }
     else {
       //add
@@ -286,6 +285,46 @@ export default function Home() {
     }
   }
   };
+
+  const fetchMessages = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/gcmessages/all');
+      setGroupChatMessages(response.data);
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+    }
+    //setGroupChatMessages();
+  };
+
+  const saveMessagesToBackend = async (groupChatMessages : GCMessage[]) => {
+    try {
+      const response = await axios.post('http://localhost:8080/api/gcmessages/saveAll', groupChatMessages);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error saving messages:", error);
+    }
+  };
+
+  const fetchGroupChatInformation = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/groupchats/all');
+      setGroupChatList(response.data);
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+    }
+  };
+
+  const saveGroupChatInformation = async (groupChatList : GroupChat[]) => {
+    try {
+      const response = await axios.post('http://localhost:8080/api/groupchats/saveAll', groupChatList);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error saving messages:", error);
+    }
+  };
+
+  //new backend stuff for GroupChatMessages
+  //new backend stuff for GroupChats
 
   /*
   const createNewChat = () => {
@@ -353,6 +392,10 @@ export default function Home() {
       
       <p>Username : {userData.username} ID : {loggedInUserID}</p>
       { /*<Button onClick={() => createNewChat()}>Create New Chat</Button> */}
+      <Button onClick={() => saveMessagesToBackend(groupChatMessages)}>Save msgs</Button>
+      <Button onClick={() => fetchMessages()}>Load msgs</Button>
+      {/*<Button onClick={() => saveGroupChatInformation(groupChatList)}>Save gc info</Button>*/}
+      {/*<Button onClick={() => fetchGroupChatInformation()}>Load gc info</Button>*/}
       <p>{activeGroupChat?.allUsers.join(', ')}</p>
       <Card className="w-full max-w-lg p-4">
         <CardHeader>
@@ -370,13 +413,13 @@ export default function Home() {
                     key={msg.primaryKey}
                     className="p-2 rounded-md bg-blue-100 mb-2"
                   >
-                    PK:{msg.primaryKey} | FK:{msg.foreignKey} | S:{msg.senderID} | " {msg.content} "
+                    Sent by: {msg.senderID} | " {msg.content} "
                   </div>
                 ))
               )}
             </div>
 
-            {/* USER_ID Input + Message Input + Send Button */}
+            {/* USER_ID Input + Message Input + Send Button     PK:{msg.primaryKey} | FK:{msg.foreignKey} | S:{msg.senderID} | " {msg.content} "*/}
             <div className="space-y-2">
 
 

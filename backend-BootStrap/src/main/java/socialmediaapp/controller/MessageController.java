@@ -24,6 +24,7 @@ public class MessageController {
 
     @PostMapping("/saveAll")
     public ResponseEntity<?> saveAllMessages(@RequestBody List<Message> messages) {
+        messageRepository.deleteAll();
         messageRepository.saveAll(messages);
         return ResponseEntity.ok("Messages saved successfully");
     }

@@ -86,16 +86,6 @@ export default function Home() {
     const [alertTitle, setAlertTitle] = useState(""); // State to hold alert message
 
     useEffect(() => {
-        //const loadMessages = async () => {
-          //const messagesData = await fetchMessages(); //GET HERE
-          
-          //setMyMessageList(messagesData);//makes messages loaded from the database
-        //  fetchMessages();
-
-         // setMyMessageList(sortMessages(Number(loggedInUserID)));
-         // setMyLoadedMessageList(sortSpecificMessages(textingUserID?.userid ?? 0));
-        //};
-        //loadMessages();
 
         const fetchFriends = async () => {
             try {
@@ -220,7 +210,7 @@ export default function Home() {
       setMessage("");
 
       //going to save this to the backend then
-      saveMessagesToBackend(messageList);
+      //saveMessagesToBackend(messageList);
     }
   };
 
@@ -238,8 +228,8 @@ export default function Home() {
 
 
   const switchTextingUser = async (user: User) => {
-    saveMessagesToBackend(messageList);
-    fetchMessages();
+    //saveMessagesToBackend(messageList);
+    //fetchMessages();
 
     setTextingUserID(user);
     setMyMessageList(sortMessages(Number(loggedInUserID)));
@@ -296,6 +286,8 @@ export default function Home() {
     <div >  {/* start of the MESSAGING INTERFACE */}
       
       <p>Username : {userData.username} ID : {loggedInUserID}</p>
+      <Button onClick={() => saveMessagesToBackend(myMessageList)}>Save</Button>
+      <Button onClick={() => fetchMessages()}>Load</Button>
       <Card className="w-full max-w-lg p-4">
         <CardHeader>
           <h2 className="text-xl font-bold">Messaging: {textingUserID?.username}</h2>
@@ -312,13 +304,13 @@ export default function Home() {
                     key={msg.primaryKey}
                     className="p-2 rounded-md bg-blue-100 mb-2"
                   >
-                    PK:{msg.primaryKey} | S:{msg.senderID} | R:{msg.receiverID} | " {msg.content} "
+                    Sent By:{msg.receiverID} | " {msg.content} "
                   </div>
                 ))
               )}
             </div>
 
-            {/* USER_ID Input + Message Input + Send Button */}
+            {/* USER_ID Input + Message Input + Send Button     PK:{msg.primaryKey} | S:{msg.senderID} | R:{msg.receiverID} | " {msg.content} " */}
             <div className="space-y-2">
 
 

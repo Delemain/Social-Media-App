@@ -4,13 +4,16 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "msg_tbl")
-public class Message {
+@Table(name = "gc_msg_tbl")
+public class GCMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PK")
     private Long primaryKey;
+
+    @Column(name = "FK")//to Group Chat ID
+    private Long foreignKey;
 
     @Column(name = "SenderID")
     private Long senderID;
@@ -27,6 +30,14 @@ public class Message {
 
     public void setPrimaryKey(Long primaryKey) {
         this.primaryKey = primaryKey;
+    }
+
+    public Long getForeignKey() {
+        return foreignKey;
+    }
+
+    public void setForeignKey(Long foreignKey) {
+        this.foreignKey = foreignKey;
     }
 
     public Long getSenderID() {
