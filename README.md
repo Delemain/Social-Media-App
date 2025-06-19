@@ -9,7 +9,7 @@ Welcome to the Social Media App project! This is a social media platform built u
   - Responsible for the **setup of the Next.js project**, and development of the **Login** and **Register** features.
 
 - **Maxim**
- - Responsible for making the **Direct Messaging** and **Group Chat** feature, integrating it with the account functionality.
+  - Responsible for making the **Direct Messaging** and **Group Chat** feature, integrating it with the account functionality.
   
 - **Karan**  
   - Responsible for implementing **Account Management** and managing **Access Logs**.
